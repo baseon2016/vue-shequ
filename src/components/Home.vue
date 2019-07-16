@@ -5,50 +5,50 @@
         <li>
           <router-link
             @click.native="total=857"
-            :class="$route.fullPath==='/?tab=all'?'active':''||$route.fullPath==='/'?'active':''"
-            to="/?tab=all"
+            :class="$route.fullPath===$publicUrl+'/?tab=all'?'active':''||$route.fullPath===$publicUrl+'/'?'active':''"
+            :to="$publicUrl+'/?tab=all'"
           >全部</router-link>
         </li>
         <li>
           <router-link
             @click.native="total=15"
-            :class="$route.fullPath==='/?tab=good'?'active':''"
-            to="/?tab=good"
+            :class="$route.fullPath===$publicUrl+'/?tab=good'?'active':''"
+            :to="$publicUrl+'/?tab=good'"
           >精华</router-link>
         </li>
         <li>
           <router-link
             @click.native="total=3"
-            :class="$route.fullPath==='/?tab=weex'?'active':''"
-            to="/?tab=weex"
+            :class="$route.fullPath===$publicUrl+'/?tab=weex'?'active':''"
+            :to="$publicUrl+'/?tab=weex'"
           >weex</router-link>
         </li>
         <li>
           <router-link
             @click.native="total=246"
-            :class="$route.fullPath==='/?tab=share'?'active':''"
-            to="/?tab=share"
+            :class="$route.fullPath===$publicUrl+'/?tab=share'?'active':''"
+            :to="$publicUrl+'/?tab=share'"
           >分享</router-link>
         </li>
         <li>
           <router-link
             @click.native="total=578"
-            :class="$route.fullPath==='/?tab=ask'?'active':''"
-            to="/?tab=ask"
+            :class="$route.fullPath===$publicUrl+'/?tab=ask'?'active':''"
+            :to="$publicUrl+'/?tab=ask'"
           >问答</router-link>
         </li>
         <li>
           <router-link
             @click.native="total=30"
-            :class="$route.fullPath==='/?tab=job'?'active':''"
-            to="/?tab=job"
+            :class="$route.fullPath===$publicUrl+'/?tab=job'?'active':''"
+            :to="$publicUrl+'/?tab=job'"
           >招聘</router-link>
         </li>
       </ul>
       <div class="topics">
         <ul class="topics-list" v-if="topics.length">
           <li v-for="item in topics" :key="item.id">
-            <router-link :to="`/user/${item.author.loginname}`" class="author-avatar">
+            <router-link :to="$publicUrl+`/user/${item.author.loginname}`" class="author-avatar">
               <img :src="item.author.avatar_url" />
             </router-link>
             <div class="reply-count">
@@ -58,11 +58,11 @@
             </div>
             <div class="topics-title-wrapper">
               <span
-                v-if="$route.fullPath==='/'||$route.fullPath==='/?tab=all'||item.top||item.good"
+                v-if="$route.fullPath===$publicUrl+'/'||$route.fullPath===$publicUrl+'/?tab=all'||item.top||item.good"
                 :class="{tab:true,active:item.top||item.good}"
               >{{item.top?'置顶':item.good?'精华':item.tab==='share'?'分享':item.tab==='ask'?'问答':item.tab==='job'?'招聘':'weex'}}</span>
               <router-link
-                :to="`/topic/${item.id}`"
+                :to="$publicUrl+`/topic/${item.id}`"
                 :title="item.title"
                 class="topic-title"
               >{{item.title}}</router-link>
@@ -107,7 +107,7 @@ export default {
     },
     changePage(currentPage) {
       const tab = this.$route.query.tab || "all";
-      this.$router.push(`/?tab=${tab}&page=${currentPage}`);
+      this.$router.push($publicUrl+`/?tab=${tab}&page=${currentPage}`);
     }
   },
   watch: {
@@ -128,7 +128,7 @@ export default {
   created() {
     axios.get("https://www.vue-js.com/api/v1/topics").then(res => {
       console.log(res.data.data);
-
+      console.log(this.$publicUrl);
       this.topics = res.data.data;
     });
   }

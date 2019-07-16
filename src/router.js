@@ -8,35 +8,36 @@ import UserRecentReplies from "./components/UserRecentReplies.vue";
 import Mymessages from "./components/Mymessages.vue";
 
 import CreateTopic from "./components/CreateTopic.vue";
+import PUBLICURL from "./publicvalue";
 Vue.use(VueRouter);
 const routes = [
   {
     component: Home,
-    path: "/"
+    path: PUBLICURL + "/"
   },
   {
     component: CreateTopic,
-    path: "/topic/create"
+    path: PUBLICURL + "/topic/create"
   },
   {
     component: Topic,
-    path: "/topic/:id"
+    path: PUBLICURL + "/topic/:id"
   },
   {
     component: User,
-    path: "/user/:loginname"
+    path: PUBLICURL + "/user/:loginname"
   },
   {
     component: UserRecentTopics,
-    path: "/user/:loginname/topics"
+    path: PUBLICURL + "/user/:loginname/topics"
   },
   {
     component: UserRecentReplies,
-    path: "/user/:loginname/replies"
+    path: PUBLICURL + "/user/:loginname/replies"
   },
   {
     component: Mymessages,
-    path: "/my/messages"
+    path: PUBLICURL + "/my/messages"
   }
 ];
 const router = new VueRouter({

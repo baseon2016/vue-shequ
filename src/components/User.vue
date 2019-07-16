@@ -23,13 +23,13 @@
         <div class="main-inner topics">
           <ul class="topics-list">
             <li v-for="item in recentTopics" :key="item.id">
-              <router-link :to="`/user/${item.author.loginname}`" class="author-avatar">
+              <router-link :to="$publicUrl+`/user/${item.author.loginname}`" class="author-avatar">
                 <img :src="item.author.avatar_url" />
               </router-link>
               <div class="reply-count"></div>
               <div class="topics-title-wrapper">
                 <router-link
-                  :to="`/topic/${item.id}`"
+                  :to="$publicUrl+`/topic/${item.id}`"
                   :title="item.title"
                   class="topic-title"
                 >{{item.title}}</router-link>
@@ -39,7 +39,7 @@
           </ul>
         </div>
         <div class="panel-foot">
-          <router-link :to="`/user/${$route.params.loginname}/topics`">查看更多»</router-link>
+          <router-link :to="$publicUrl+`/user/${$route.params.loginname}/topics`">查看更多»</router-link>
         </div>
       </div>
       <div class="panel">
@@ -49,13 +49,13 @@
         <div class="main-inner topics">
           <ul class="topics-list">
             <li v-for="item in recentReplies" :key="item.id">
-              <router-link :to="`/user/${item.author.loginname}`" class="author-avatar">
+              <router-link :to="$publicUrl+`/user/${item.author.loginname}`" class="author-avatar">
                 <img :src="item.author.avatar_url" />
               </router-link>
               <div class="reply-count"></div>
               <div class="topics-title-wrapper">
                 <router-link
-                  :to="`/topic/${item.id}`"
+                  :to="$publicUrl+`/topic/${item.id}`"
                   :title="item.title"
                   class="topic-title"
                 >{{item.title}}</router-link>
@@ -65,7 +65,7 @@
           </ul>
         </div>
         <div class="panel-foot">
-          <router-link :to="`/user/${$route.params.loginname}/replies`">查看更多»</router-link>
+          <router-link :to="$publicUrl+`/user/${$route.params.loginname}/replies`">查看更多»</router-link>
         </div>
       </div>
     </div>

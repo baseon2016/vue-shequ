@@ -3,7 +3,7 @@
     <div v-if="aaa" class="mymessages">
       <div class="panel">
         <div class="panel-head">
-          <router-link to="/">
+          <router-link :to="$publicUrl+'/'">
             <span class="panel-head-title push-home">主页</span>
           </router-link>
 
@@ -14,9 +14,11 @@
           <ul v-if="hasNotReadMessages.length">
             <li v-for="item in hasNotReadMessages" :key="item.id" class="message">
               <div class="message-info">
-                <router-link :to="`/user/${item.author.loginname}`">{{item.author.loginname}}</router-link>
+                <router-link
+                  :to="$publicUrl+`/user/${item.author.loginname}`"
+                >{{item.author.loginname}}</router-link>
                 <span>{{item.type==='at'?' 在话题 ':' 回复了你的话题 '}}</span>
-                <router-link :to="`/topic/${item.topic.id}`">{{item.topic.title}}</router-link>
+                <router-link :to="$publicUrl+`/topic/${item.topic.id}`">{{item.topic.title}}</router-link>
                 <span>{{item.type==='at'?" 中@了你":''}}</span>
               </div>
               <span class="unread">
@@ -37,9 +39,11 @@
           <ul v-if="hasReadMessages.length">
             <li v-for="item in hasReadMessages" :key="item.id" class="message">
               <div class="message-info">
-                <router-link :to="`/user/${item.author.loginname}`">{{item.author.loginname}}</router-link>
+                <router-link
+                  :to="$publicUrl+`/user/${item.author.loginname}`"
+                >{{item.author.loginname}}</router-link>
                 <span>{{item.type==='at'?' 在话题 ':' 回复了你的话题 '}}</span>
-                <router-link :to="`/topic/${item.topic.id}`">{{item.topic.title}}</router-link>
+                <router-link :to="$publicUrl+`/topic/${item.topic.id}`">{{item.topic.title}}</router-link>
                 <span>{{item.type==='at'?" 中@了你":''}}</span>
               </div>
               <span class="marked-icon">

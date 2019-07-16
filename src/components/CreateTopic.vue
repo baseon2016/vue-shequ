@@ -117,7 +117,7 @@ export default {
           this.tab = "";
           this.content = "";
           this.title = "";
-          this.$router.push(`/topic/${res.data.topic_id}`);
+          this.$router.push(`${this.$publicUrl}/topic/${res.data.topic_id}`);
           console.log(res.data);
         });
     },

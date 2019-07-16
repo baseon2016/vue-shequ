@@ -2,7 +2,7 @@
   <div class="header">
     <div class="container">
       <h1 class="logo">
-        <router-link to="/" :style="{color:'#fff'}">
+        <router-link :to="$publicUrl+'/'" :style="{color:'#fff'}">
           <img src="https://www.vue-js.com/public/images/vue.png" />
           Vue.js
         </router-link>
@@ -12,7 +12,7 @@
       </div>
       <ul class="navigation">
         <li>
-          <router-link to="/" :style="{color:'#fff'}">Home</router-link>
+          <router-link :to="$publicUrl+'/'" :style="{color:'#fff'}">Home</router-link>
         </li>
         <li>
           <router-link to="/" :style="{color:'#fff'}">微信公众号</router-link>
@@ -33,10 +33,10 @@
           <router-link to="/" :style="{color:'#fff'}">注册</router-link>
         </li>
       </ul>
-      <router-link v-if="userinfo" to="/my/messages" class="mymessages">
+      <router-link v-if="userinfo" :to="this.$publicUrl+'/my/messages'" class="mymessages">
         <span v-if="newMessages" class="message-count">{{newMessages}}</span> 未读消息
       </router-link>
-      <router-link v-if="userinfo" to="/topic/create" class="postTitle">发布话题</router-link>
+      <router-link v-if="userinfo" :to="this.$publicUrl+'/topic/create'" class="postTitle">发布话题</router-link>
       <div v-if="!userinfo" class="login">
         <input type="text" v-model="usertoken" />
         <button @click="login">登录</button>
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     login() {
-      this.$router.push("/");
+      this.$router.push(this.$publicUrl+"/");
       axios
         .post("https://www.vue-js.com/api/v1/accesstoken", {
           accesstoken: this.usertoken
@@ -94,7 +94,7 @@ export default {
         });
     },
     logout() {
-      this.$router.push("/");
+      this.$router.push(this.$publicUrl+"/")
       this.userinfo = null;
       localStorage.removeItem("token");
     }
